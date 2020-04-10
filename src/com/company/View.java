@@ -23,6 +23,7 @@ public class View {
     AnimationTimer animationTimer;
     Timer timer;
     int score = 0;
+    int topScore;
     int timerLength = 60;
     public View(Pane root, Model model) {
         this.root = root;
@@ -87,7 +88,7 @@ public class View {
             public void handle(long now) {
                 model.getScreenObjects().forEach(screenObject -> {
                     screenObject.update();
-                    t2.setText(Integer.toString(score));
+                    t2.setText(Integer.toString(topScore));
                 });
             }
         };
@@ -103,22 +104,38 @@ public class View {
         b1.setOnMouseClicked(event -> {
             if(b1.getText().equals(screenObject.getImageValue()))
             {
-                score = timerLength;
+                this.score = timerLength;
+                this.topScore = this.topScore + score;
+                screenObject.generateImagePath();
+            }else{
+                this.topScore = 0;
+                System.exit(0);
             }
         });
         b2.setOnMouseClicked(event -> {
             if(b2.getText().equals(screenObject.getImageValue()))
             {
-                score = timerLength;
+                this.score = timerLength;
+                this.topScore = this.topScore + score;
+                screenObject.generateImagePath();
+                timerLength = 60;
+            }else{
+                this.topScore = 0;
+                System.exit(0);
             }
         });
         b3.setOnMouseClicked(event -> {
             if(b3.getText().equals(screenObject.getImageValue()))
             {
-                score = timerLength;
+                this.score = timerLength;
+                this.topScore = this.topScore + score;
+                screenObject.generateImagePath();
+                timerLength = 60;
+            }else{
+                this.topScore = 0;
+                System.exit(0);
             }
         });
-
         root.getChildren().addAll(b1, b2, b3, b4, canvas, t1, t2);
         animationTimer.start();
     }
