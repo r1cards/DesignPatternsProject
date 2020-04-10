@@ -4,15 +4,12 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.effect.BlendMode;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import java.beans.EventHandler;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -104,17 +101,19 @@ public class View {
 
 //        model.addObjectToArray(new ScreenObject(gc, 179,110));
         b1.setOnMouseClicked(event -> {
-            b1.getText();
-
-
+            if(b1.getText().equals(screenObject.getImageValue()))
+            {
+                score = timerLength;
+            }
         });
         b2.setOnMouseClicked(event -> {
-            b2.getText();
-
+            if(b2.getText().equals(screenObject.getImageValue()))
+            {
+                score = timerLength;
+            }
         });
         b3.setOnMouseClicked(event -> {
-            b3.getText();
-            if(b3.getText().equals(screenObject.getImageName()))
+            if(b3.getText().equals(screenObject.getImageValue()))
             {
                 score = timerLength;
             }
