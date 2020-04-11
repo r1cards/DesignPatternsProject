@@ -20,8 +20,7 @@ public class ScreenObject extends GameObject {
 //  Generates and returns the first part of the image path
     public String setNewImage(){
         random = new Random();
-//       int number = random.nextInt(3);
-        int number = (int)(Math.random()*3)+1;
+       int number = random.nextInt(3);
         if(number == 1){
             this.imageValue = "9";
             return "9";
@@ -37,8 +36,8 @@ public class ScreenObject extends GameObject {
 // Generates and returns the second part of the image path
     public String setImageSelector(){
         random = new Random();
-//        int number = random.nextInt(2);
-        int number = (int)(Math.random()*2);
+        int number = random.nextInt(8);
+
         return Integer.toString(number);
     }
 
