@@ -107,6 +107,7 @@ public class View {
                 this.score = timerLength;
                 this.topScore = this.topScore + score;
                 screenObject.generateImagePath();
+                t1.setFill(Color.BLACK);
             }else{
                 this.topScore = 0;
                 System.exit(0);
@@ -119,6 +120,7 @@ public class View {
                 this.topScore = this.topScore + score;
                 screenObject.generateImagePath();
                 timerLength = 60;
+                t1.setFill(Color.BLACK);
             }else{
                 this.topScore = 0;
                 System.exit(0);
@@ -131,6 +133,7 @@ public class View {
                 this.topScore = this.topScore + score;
                 screenObject.generateImagePath();
                 timerLength = 60;
+                t1.setFill(Color.BLACK);
             }else{
                 this.topScore = 0;
                 System.exit(0);
