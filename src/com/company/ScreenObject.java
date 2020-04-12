@@ -44,4 +44,8 @@ public class ScreenObject extends GameObject {
     public void generateImagePath(){
         img = new Image("images/"+setNewImage()+"."+setImageSelector()+".png");
     }
+
+    public void gameOver(){
+        img = new Image("images/gameOver.png");
+    }
 }

@@ -25,10 +25,11 @@ public class Main extends Application {
         stage.setTitle("MVC App");
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
-        Button startBut = new Button("Start");
+        Button startButton = new Button("Start");
         Pane start = new Pane();
-        start.getChildren().add(startBut);
-        startBut.setOnMouseClicked(event -> {
+        start.getChildren().add(startButton);
+
+        startButton.setOnMouseClicked(event -> {
             Pane root = new Pane();
             stage.setScene(new Scene(root, 1280, 720));
             stage.show();
