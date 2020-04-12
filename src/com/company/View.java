@@ -124,17 +124,6 @@ public class View {
                 screenObject.generateImagePath();
             }else{
                     this.timerLength = this.timerLength - 5;
-//                setMainGameElementsToNotVisible();
-//                screenObject.gameOver();
-//                gameOverScoreField.setText("        Score: "+topScore);
-//                retryButton.setText("RETRY");
-//                root.getChildren().addAll(gameOverScoreField, retryButton);
-//                //        Retry Button
-//                retryButton.setOnMouseClicked(e -> {
-//                    retryButton.setVisible(false);
-//                    gameOverScoreField.setVisible(false);
-//                    new View(root, model);
-//                });
             }
         });
         answerTwo.setOnMouseClicked(event -> {
@@ -144,17 +133,6 @@ public class View {
                 screenObject.generateImagePath();
             }else{
                     this.timerLength = this.timerLength - 5;
-//                setMainGameElementsToNotVisible();
-//                screenObject.gameOver();
-//                gameOverScoreField.setText("        Score: "+topScore);
-//                retryButton.setText("RETRY");
-//                root.getChildren().addAll(gameOverScoreField, retryButton);
-//                //        Retry Button
-//                retryButton.setOnMouseClicked(e -> {
-//                    retryButton.setVisible(false);
-//                    gameOverScoreField.setVisible(false);
-//                    new View(root, model);
-//                });
             }
         });
         answerThree.setOnMouseClicked(event -> {
@@ -164,17 +142,6 @@ public class View {
                 screenObject.generateImagePath();
             }else{
                     this.timerLength = this.timerLength - 5;
-//                setMainGameElementsToNotVisible();
-//                screenObject.gameOver();
-//                gameOverScoreField.setText("        Score: "+topScore);
-//                retryButton.setText("RETRY");
-//                root.getChildren().addAll(gameOverScoreField, retryButton);
-//                //        Retry Button
-//                retryButton.setOnMouseClicked(e -> {
-//                    retryButton.setVisible(false);
-//                    gameOverScoreField.setVisible(false);
-//                    new View(root, model);
-//                });
             }
         });
         retryButton.setVisible(false);
