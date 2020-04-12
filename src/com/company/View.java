@@ -9,144 +9,100 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class View {
     Pane root;
     Model model;
-    Button b1, b2, b3, b4, b5;
+    Button answerOne, answerTwo, answerThree, retryButton;
     Canvas canvas;
-    Text t1, t2, t3;
+    Text timerField, scoreField, gameOverScoreField;
     GraphicsContext gc;
     AnimationTimer animationTimer;
-    Timer timer;
-    int score = 0;
-    int topScore;
-    int correctAnswerPoints = 5;
+//    Timer timer;
+//    int score = 0;
+    int topScore = 0;
+    int correctAnswerPoints = 1;
     int timerLength = 60;
     public View(Pane root, Model model) {
         this.root = root;
         this.model = model;
+        root.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent;");
 //        Values for answers
-        b1 = new Button("23");
-        b2 = new Button("11");
-        b3 = new Button("9");
-        b4 = new Button("Hint");
-        b5 = new Button("Retry");
+        answerOne = new Button("23");
+        answerTwo = new Button("11");
+        answerThree = new Button("9");
+        retryButton = new Button("Retry");
 //         Answer 1
-        b1.setLayoutX(400);
-        b1.setLayoutY(560);
-        b1.setScaleX(2.5);
-        b1.setScaleY(3.8);
+        answerOne.setLayoutX(400);
+        answerOne.setLayoutY(560);
+        answerOne.setScaleX(2.5);
+        answerOne.setScaleY(3.8);
 //         Answer 2
-        b2.setLayoutX(600);
-        b2.setLayoutY(560);
-        b2.setScaleX(2.5);
-        b2.setScaleY(3.8);
+        answerTwo.setLayoutX(600);
+        answerTwo.setLayoutY(560);
+        answerTwo.setScaleX(2.5);
+        answerTwo.setScaleY(3.8);
 //         Answer 3
-        b3.setLayoutX(800);
-        b3.setLayoutY(560);
-        b3.setScaleX(2.5);
-        b3.setScaleY(3.8);
-//        Hint
-        b4.setLayoutX(1195);
-        b4.setLayoutY(670);
-        b4.setScaleX(3);
-        b4.setScaleY(2.4);
+        answerThree.setLayoutX(800);
+        answerThree.setLayoutY(560);
+        answerThree.setScaleX(2.5);
+        answerThree.setScaleY(3.8);
 //        Retry Button
-        b5.setLayoutX(1145);
-        b5.setLayoutY(670);
-        b5.setScaleX(3);
-        b5.setScaleY(2.4);
+        retryButton.setLayoutX(600);
+        retryButton.setLayoutY(470);
+        retryButton.setScaleX(3);
+        retryButton.setScaleY(2.4);
 //         Timer field
-        t1 = new Text();
-        t1.setLayoutX(1180);
-        t1.setLayoutY(60);
+        timerField = new Text();
+        timerField.setLayoutX(1180);
+        timerField.setLayoutY(60);
 //        Score field
-        t2 = new Text();
-        t2.setLayoutX(15);
-        t2.setLayoutY(45);
-        t2.setText("score: "+score);
-        t2.setFont(Font.font("Verdana", FontWeight.MEDIUM, 45));
+        scoreField = new Text();
+        scoreField.setLayoutX(15);
+        scoreField.setLayoutY(45);
+        scoreField.setText(Integer.toString(topScore));
+        scoreField.setFont(Font.font("Verdana", FontWeight.MEDIUM, 45));
 //        Game over score
-        t3 = new Text();
-        t3.setLayoutX(270);
-        t3.setLayoutY(420);
-        t3.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
+        gameOverScoreField = new Text();
+        gameOverScoreField.setLayoutX(270);
+        gameOverScoreField.setLayoutY(420);
+        gameOverScoreField.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
 //          Graphics content
         canvas = new Canvas(1200,350);
-        timer = new Timer();
         gc = canvas.getGraphicsContext2D();
 //        Position of the image
         ScreenObject screenObject = new ScreenObject(gc, 275,150);
-
         model.addObjectToArray(screenObject);
 
-        b1.setOnMouseClicked(event -> {
-            if(b1.getText().equals(screenObject.getImageValue()))
-            {
-                this.score = correctAnswerPoints;
-                this.topScore = this.topScore + score;
-                screenObject.generateImagePath();
-            }else{
-                setElementsToNotVisible();
-                screenObject.gameOver();
-                t3.setText("        Score: "+topScore);
-                root.getChildren().add(t3);
-            }
-        });
-        b2.setOnMouseClicked(event -> {
-            if(b2.getText().equals(screenObject.getImageValue()))
-            {
-                this.score = correctAnswerPoints;
-                this.topScore = this.topScore + score;
-                screenObject.generateImagePath();
-            }else{
-                setElementsToNotVisible();
-                screenObject.gameOver();
-                t3.setText("        Score: "+topScore);
-                root.getChildren().add(t3);
-            }
-        });
-        b3.setOnMouseClicked(event -> {
-            if(b3.getText().equals(screenObject.getImageValue()))
-            {
-                this.score = correctAnswerPoints;
-                this.topScore = this.topScore + score;
-                screenObject.generateImagePath();
-            }else{
-                setElementsToNotVisible();
-                screenObject.gameOver();
-                t3.setText("        Score: "+topScore);
-                root.getChildren().add(t3);
-            }
-        });
-//        Hint Button
-        b4.setOnMouseClicked(event -> {
 
-
-        });
-//        Retry Button
-        b5.setOnMouseClicked(event -> {
-
-
-        });
+       Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                t1.setText(timerLength+"");
+                timerField.setText(timerLength+"");
                 if(timerLength >= 10){
-                    t1.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
-                }else if(timerLength == 0){
-                    setElementsToNotVisible();
+                    timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
+                }else if(timerLength <= 1){
+                    gameOverScoreField.setText("        Score: "+topScore);
+                    retryButton.setVisible(true);
+                    gameOverScoreField.setVisible(true);
+                    setMainGameElementsToNotVisible();
                     screenObject.gameOver();
-                    t3.setText("        Score: "+topScore);
-                    root.getChildren().add(t3);
+                    timer.purge();
+                    this.cancel();
+                    //        Retry Button
+                    retryButton.setOnMouseClicked(e -> {
+                        retryButton.setVisible(false);
+                        gameOverScoreField.setVisible(false);
+                        new View(root, model);
+                        timerLength = 60;
+                        topScore = 0;
+                    });
                 }else{
-                    t1.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
-                    t1.setFill(Color.RED);
+                    timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
+                    timerField.setFill(Color.RED);
                 }
                 timerLength--;
             }
@@ -157,20 +113,82 @@ public class View {
             public void handle(long now) {
                 model.getScreenObjects().forEach(screenObject -> {
                     screenObject.update();
-                    t2.setText(Integer.toString(topScore));
+                    scoreField.setText(Integer.toString(topScore));
                 });
             }
         };
-        root.getChildren().addAll(b1, b2, b3, b4, canvas, t1, t2);
+        answerOne.setOnMouseClicked(event -> {
+            if(answerOne.getText().equals(screenObject.getImageValue()))
+            {
+                this.topScore = this.topScore + correctAnswerPoints;
+                screenObject.generateImagePath();
+            }else{
+                    this.timerLength = this.timerLength - 5;
+//                setMainGameElementsToNotVisible();
+//                screenObject.gameOver();
+//                gameOverScoreField.setText("        Score: "+topScore);
+//                retryButton.setText("RETRY");
+//                root.getChildren().addAll(gameOverScoreField, retryButton);
+//                //        Retry Button
+//                retryButton.setOnMouseClicked(e -> {
+//                    retryButton.setVisible(false);
+//                    gameOverScoreField.setVisible(false);
+//                    new View(root, model);
+//                });
+            }
+        });
+        answerTwo.setOnMouseClicked(event -> {
+            if(answerTwo.getText().equals(screenObject.getImageValue()))
+            {
+                this.topScore = this.topScore + correctAnswerPoints;
+                screenObject.generateImagePath();
+            }else{
+                    this.timerLength = this.timerLength - 5;
+//                setMainGameElementsToNotVisible();
+//                screenObject.gameOver();
+//                gameOverScoreField.setText("        Score: "+topScore);
+//                retryButton.setText("RETRY");
+//                root.getChildren().addAll(gameOverScoreField, retryButton);
+//                //        Retry Button
+//                retryButton.setOnMouseClicked(e -> {
+//                    retryButton.setVisible(false);
+//                    gameOverScoreField.setVisible(false);
+//                    new View(root, model);
+//                });
+            }
+        });
+        answerThree.setOnMouseClicked(event -> {
+            if(answerThree.getText().equals(screenObject.getImageValue()))
+            {
+                this.topScore = this.topScore + correctAnswerPoints;
+                screenObject.generateImagePath();
+            }else{
+                    this.timerLength = this.timerLength - 5;
+//                setMainGameElementsToNotVisible();
+//                screenObject.gameOver();
+//                gameOverScoreField.setText("        Score: "+topScore);
+//                retryButton.setText("RETRY");
+//                root.getChildren().addAll(gameOverScoreField, retryButton);
+//                //        Retry Button
+//                retryButton.setOnMouseClicked(e -> {
+//                    retryButton.setVisible(false);
+//                    gameOverScoreField.setVisible(false);
+//                    new View(root, model);
+//                });
+            }
+        });
+        retryButton.setVisible(false);
+        gameOverScoreField.setVisible(false);
+        root.getChildren().addAll(gameOverScoreField, retryButton);
+        retryButton.setText("RETRY");
+        root.getChildren().addAll(answerOne, answerTwo, answerThree, canvas, timerField, scoreField);
         animationTimer.start();
     }
-
-    public void setElementsToNotVisible(){
-        b1.setVisible(false);
-        b2.setVisible(false);
-        b3.setVisible(false);
-        b4.setVisible(false);
-        t1.setVisible(false);
-        t2.setVisible(false);
+    public void setMainGameElementsToNotVisible(){
+        answerOne.setVisible(false);
+        answerTwo.setVisible(false);
+        answerThree.setVisible(false);
+        timerField.setVisible(false);
+        scoreField.setVisible(false);
     }
 }
