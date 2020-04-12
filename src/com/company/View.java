@@ -16,14 +16,14 @@ import java.util.TimerTask;
 public class View {
     Pane root;
     Model model;
-    Button b1, b2, b3, b4;
+    Button b1, b2, b3, b4, b5;
     Canvas canvas;
     Text t1, t2, t3;
     GraphicsContext gc;
     AnimationTimer animationTimer;
     Timer timer;
     int score = 0;
-    int topScore = 0;
+    int topScore;
     int correctAnswerPoints = 5;
     int timerLength = 60;
     public View(Pane root, Model model) {
@@ -34,6 +34,7 @@ public class View {
         b2 = new Button("11");
         b3 = new Button("9");
         b4 = new Button("Hint");
+        b5 = new Button("Retry");
 //         Answer 1
         b1.setLayoutX(400);
         b1.setLayoutY(560);
@@ -54,6 +55,11 @@ public class View {
         b4.setLayoutY(670);
         b4.setScaleX(3);
         b4.setScaleY(2.4);
+//        Retry Button
+        b5.setLayoutX(1145);
+        b5.setLayoutY(670);
+        b5.setScaleX(3);
+        b5.setScaleY(2.4);
 //         Timer field
         t1 = new Text();
         t1.setLayoutX(1180);
@@ -66,13 +72,67 @@ public class View {
         t2.setFont(Font.font("Verdana", FontWeight.MEDIUM, 45));
 //        Game over score
         t3 = new Text();
-        t3.setText("         Score: "+topScore);
         t3.setLayoutX(270);
         t3.setLayoutY(420);
         t3.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
 //          Graphics content
         canvas = new Canvas(1200,350);
         timer = new Timer();
+        gc = canvas.getGraphicsContext2D();
+//        Position of the image
+        ScreenObject screenObject = new ScreenObject(gc, 275,150);
+
+        model.addObjectToArray(screenObject);
+
+        b1.setOnMouseClicked(event -> {
+            if(b1.getText().equals(screenObject.getImageValue()))
+            {
+                this.score = correctAnswerPoints;
+                this.topScore = this.topScore + score;
+                screenObject.generateImagePath();
+            }else{
+                setElementsToNotVisible();
+                screenObject.gameOver();
+                t3.setText("        Score: "+topScore);
+                root.getChildren().add(t3);
+            }
+        });
+        b2.setOnMouseClicked(event -> {
+            if(b2.getText().equals(screenObject.getImageValue()))
+            {
+                this.score = correctAnswerPoints;
+                this.topScore = this.topScore + score;
+                screenObject.generateImagePath();
+            }else{
+                setElementsToNotVisible();
+                screenObject.gameOver();
+                t3.setText("        Score: "+topScore);
+                root.getChildren().add(t3);
+            }
+        });
+        b3.setOnMouseClicked(event -> {
+            if(b3.getText().equals(screenObject.getImageValue()))
+            {
+                this.score = correctAnswerPoints;
+                this.topScore = this.topScore + score;
+                screenObject.generateImagePath();
+            }else{
+                setElementsToNotVisible();
+                screenObject.gameOver();
+                t3.setText("        Score: "+topScore);
+                root.getChildren().add(t3);
+            }
+        });
+//        Hint Button
+        b4.setOnMouseClicked(event -> {
+
+
+        });
+//        Retry Button
+        b5.setOnMouseClicked(event -> {
+
+
+        });
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -80,8 +140,10 @@ public class View {
                 if(timerLength >= 10){
                     t1.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
                 }else if(timerLength == 0){
-                    timerLength = 60;
-                    t1.setFill(Color.BLACK);
+                    setElementsToNotVisible();
+                    screenObject.gameOver();
+                    t3.setText("        Score: "+topScore);
+                    root.getChildren().add(t3);
                 }else{
                     t1.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
                     t1.setFill(Color.RED);
@@ -99,62 +161,6 @@ public class View {
                 });
             }
         };
-        gc = canvas.getGraphicsContext2D();
-
-//        gc.fillRect(0,0,canvas.getWidth(),canvas.getHeight());
-//        Position of the image
-        ScreenObject screenObject = new ScreenObject(gc, 275,150);
-//        screenObject.img = new Image();
-        model.addObjectToArray(screenObject);
-
-//        model.addObjectToArray(new ScreenObject(gc, 179,110));
-        b1.setOnMouseClicked(event -> {
-            if(b1.getText().equals(screenObject.getImageValue()))
-            {
-                this.score = correctAnswerPoints;
-                this.topScore = this.topScore + score;
-                screenObject.generateImagePath();
-//                t1.setFill(Color.BLACK);
-            }else{
-                this.topScore = 0;
-                setElementsToNotVisible();
-                screenObject.gameOver();
-                root.getChildren().add(t3);
-//                System.exit(0);
-            }
-        });
-        b2.setOnMouseClicked(event -> {
-            if(b2.getText().equals(screenObject.getImageValue()))
-            {
-                this.score = correctAnswerPoints;
-                this.topScore = this.topScore + score;
-                screenObject.generateImagePath();
-//                timerLength = 60;
-//                t1.setFill(Color.BLACK);
-            }else{
-                this.topScore = 0;
-                setElementsToNotVisible();
-                screenObject.gameOver();
-                root.getChildren().add(t3);
-//                System.exit(0);
-            }
-        });
-        b3.setOnMouseClicked(event -> {
-            if(b3.getText().equals(screenObject.getImageValue()))
-            {
-                this.score = correctAnswerPoints;
-                this.topScore = this.topScore + score;
-                screenObject.generateImagePath();
-//                timerLength = 60;
-//                t1.setFill(Color.BLACK);
-            }else{
-                this.topScore = 0;
-                setElementsToNotVisible();
-                screenObject.gameOver();
-                root.getChildren().add(t3);
-//                System.exit(0);
-            }
-        });
         root.getChildren().addAll(b1, b2, b3, b4, canvas, t1, t2);
         animationTimer.start();
     }
