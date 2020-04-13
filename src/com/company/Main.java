@@ -6,6 +6,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -26,8 +29,16 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
         Button startButton = new Button("Start");
+        Text gameDescription = new Text("See how many points you can get before the timer runs out.");
+        startButton.setLayoutX(600);
+        startButton.setLayoutY(400);
+        startButton.setScaleX(4.5);
+        startButton.setScaleY(3);
+        gameDescription.setLayoutX(375);
+        gameDescription.setLayoutY(300);
+        gameDescription.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Pane start = new Pane();
-        start.getChildren().add(startButton);
+        start.getChildren().addAll(startButton, gameDescription);
 
         startButton.setOnMouseClicked(event -> {
             Pane root = new Pane();

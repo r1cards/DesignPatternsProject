@@ -20,8 +20,6 @@ public class View {
     Text timerField, scoreField, gameOverScoreField;
     GraphicsContext gc;
     AnimationTimer animationTimer;
-//    Timer timer;
-//    int score = 0;
     int topScore = 0;
     int correctAnswerPoints = 1;
     int timerLength = 60;
@@ -75,9 +73,7 @@ public class View {
 //        Position of the image
         ScreenObject screenObject = new ScreenObject(gc, 275,150);
         model.addObjectToArray(screenObject);
-
-
-       Timer timer = new Timer();
+        Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -86,7 +82,6 @@ public class View {
                 if(timerLength >= 10){
                     timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
                 }else if(timerLength <= 1){
-//                    gameOverScoreField.setText("        Score: "+topScore);
                     retryButton.setVisible(true);
                     gameOverScoreField.setVisible(true);
                     setMainGameElementsToNotVisible();
