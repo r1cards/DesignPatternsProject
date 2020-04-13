@@ -82,10 +82,11 @@ public class View {
             @Override
             public void run() {
                 timerField.setText(timerLength+"");
+                gameOverScoreField.setText("        Score: "+topScore);
                 if(timerLength >= 10){
                     timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
                 }else if(timerLength <= 1){
-                    gameOverScoreField.setText("        Score: "+topScore);
+//                    gameOverScoreField.setText("        Score: "+topScore);
                     retryButton.setVisible(true);
                     gameOverScoreField.setVisible(true);
                     setMainGameElementsToNotVisible();
