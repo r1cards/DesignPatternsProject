@@ -46,6 +46,8 @@ public class Main extends Application {
             stage.show();
             model = new Model();
             view = new View(root, model);
+            ScreenObject screenObject = new ScreenObject(view.getGc(), 275,150);
+            model.setEquation(screenObject);
             controller = new Controller(model, view);
         });
         stage.setScene(new Scene(start, 1280, 720));
