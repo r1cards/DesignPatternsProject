@@ -21,4 +21,3 @@ public class GameObject {
             gc.drawImage(img, x, y, 700, 200);
     }
 }
-

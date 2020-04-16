@@ -25,19 +25,16 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
         Button startButton = new Button("Start");
-        Text gameDescription = new Text("See how many points you can get before the timer runs out.");
 //        Start Button
         startButton.setLayoutX(600);
         startButton.setLayoutY(400);
         startButton.setScaleX(4.5);
         startButton.setScaleY(3);
-//        Game Description
-        gameDescription.setLayoutX(375);
-        gameDescription.setLayoutY(300);
-        gameDescription.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        startButton.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
+        startButton.setStyle("-fx-background-color: orange; -fx-text-fill: white");
         Pane start = new Pane();
-        start.getChildren().addAll(startButton, gameDescription);
-
+        start.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-image: url(/images/backgroundStart.png); -fx-background-repeat: none");
+        start.getChildren().addAll(startButton);
         startButton.setOnMouseClicked(event -> {
             Pane root = new Pane();
             stage.setScene(new Scene(root, 1280, 720));

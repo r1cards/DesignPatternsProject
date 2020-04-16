@@ -4,7 +4,7 @@ import javafx.scene.media.AudioClip;
 
 public class AudioHandler {
     private static AudioHandler instance;
-    AudioClip mainAudio, correctAudio, incorrectAudio;
+    private AudioClip mainAudio, correctAudio, incorrectAudio;
     public static AudioHandler getInstance() {
         if (instance == null) {
             instance = new AudioHandler();
@@ -21,13 +21,18 @@ public class AudioHandler {
     public void playBackground(){
         mainAudio.play();
     }
+
     public void playCorrectSound(){
         correctAudio.play();
     }
+
     public void playIncorrectSound(){
         incorrectAudio.play();
     }
-    public void stopAllSounds(){
 
+    public void stopAllSounds(){
+        mainAudio.stop();
+        correctAudio.stop();
+        incorrectAudio.stop();
     }
 }
