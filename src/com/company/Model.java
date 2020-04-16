@@ -1,16 +1,10 @@
 package com.company;
 
-import java.util.ArrayList;
-
 public class Model {
 
-   // ArrayList<ScreenObject> screenObjects = new ArrayList<>();
     private ScreenObject equation;
     private int topScore = 0;
     private int timerLength;
-//    public void addObjectToArray(ScreenObject sc){
-//        screenObjects.add(sc);
-//    }
 
     public int getTimerLength() {
         return timerLength;
@@ -35,12 +29,13 @@ public class Model {
     public void setEquation(ScreenObject equation) {
         this.equation = equation;
     }
-//    public void setEquation(ScreenObject equation) {
-//        this.equation = equation;
-//    }
 
     public void addScore() {
-        this.setTopScore( getTopScore() + 1);
+        this.setTopScore(getTopScore() + 1);
         getEquation().generateImagePath();
+    }
+
+    public void loseTime(){
+        this.setTimerLength(this.getTimerLength() - 5);
     }
 }

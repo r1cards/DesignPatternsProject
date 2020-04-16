@@ -16,19 +16,17 @@ public class View {
     private Pane root;
     private Model model;
     private Button answerOne, answerTwo, answerThree, retryButton;
-   private Canvas canvas;
+    private Canvas canvas;
     private Text timerField, scoreField, gameOverScoreField;
     private GraphicsContext gc;
     private AnimationTimer animationTimer;
-   // private int topScore = 0;
-    private int correctAnswerPoints = 1;
     private int timerLength = 60;
 
 
     View(Pane root, Model model) {
         this.root = root;
         this.model = model;
-        root.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent;");
+        root.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-image: url(/images/background.png); -fx-background-repeat: none");
 //        Values for answers
         answerOne = new Button("23");
         answerTwo = new Button("11");
@@ -36,19 +34,25 @@ public class View {
         retryButton = new Button("Retry");
 //         Answer 1
         answerOne.setLayoutX(400);
-        answerOne.setLayoutY(560);
+        answerOne.setLayoutY(570);
         answerOne.setScaleX(2.5);
         answerOne.setScaleY(3.8);
+        answerOne.setStyle("-fx-background-color: gray; -fx-text-fill: white");
+        answerOne.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
 //         Answer 2
         answerTwo.setLayoutX(600);
-        answerTwo.setLayoutY(560);
+        answerTwo.setLayoutY(570);
         answerTwo.setScaleX(2.5);
         answerTwo.setScaleY(3.8);
+        answerTwo.setStyle("-fx-background-color: orange; -fx-text-fill: white");
+        answerTwo.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
 //         Answer 3
         answerThree.setLayoutX(800);
-        answerThree.setLayoutY(560);
+        answerThree.setLayoutY(570);
         answerThree.setScaleX(2.5);
         answerThree.setScaleY(3.8);
+        answerThree.setStyle("-fx-background-color: green; -fx-text-fill: white");
+        answerThree.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
 //        Retry Button
         retryButton.setLayoutX(600);
         retryButton.setLayoutY(470);
@@ -56,14 +60,14 @@ public class View {
         retryButton.setScaleY(2.4);
 //         Timer field
         timerField = new Text();
-        timerField.setLayoutX(1180);
-        timerField.setLayoutY(60);
+        timerField.setLayoutX(1210);
+        timerField.setLayoutY(50);
 //        Score field
         scoreField = new Text();
         scoreField.setLayoutX(15);
-        scoreField.setLayoutY(45);
+        scoreField.setLayoutY(50);
         scoreField.setText(Integer.toString(0));
-        scoreField.setFont(Font.font("Verdana", FontWeight.MEDIUM, 45));
+        scoreField.setFont(Font.font("Verdana", FontWeight.MEDIUM, 49));
 //        Game over score
         gameOverScoreField = new Text();
         gameOverScoreField.setLayoutX(270);
@@ -82,7 +86,7 @@ public class View {
                 timerField.setText(timerLength+"");
                 gameOverScoreField.setText("        Score: "+model.getTopScore());
                 if(timerLength >= 10){
-                    timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
+                    timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
                 }else if(timerLength <= 1){
                     retryButton.setVisible(true);
                     gameOverScoreField.setVisible(true);
@@ -90,16 +94,8 @@ public class View {
                     model.getEquation().gameOver();
                     timer.purge();
                     this.cancel();
-                    //        Retry Button
-                    retryButton.setOnMouseClicked(e -> {
-                        retryButton.setVisible(false);
-                        gameOverScoreField.setVisible(false);
-                        new View(root, model);
-                        timerLength = 60;
-                        model.setTopScore(0);
-                    });
                 }else{
-                    timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
+                    timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
                     timerField.setFill(Color.RED);
                 }
                 timerLength--;
@@ -111,26 +107,8 @@ public class View {
             public void handle(long now) {
                 model.getEquation().update();
                 scoreField.setText(Integer.toString(model.getTopScore()));
-//
             }
         };
-//
-        answerTwo.setOnMouseClicked(event -> {
-            if(answerTwo.getText().equals(model.getEquation().getImageValue()))
-            {
-                model.addScore();
-            }else{
-                    this.timerLength = this.timerLength - 5;
-            }
-        });
-        answerThree.setOnMouseClicked(event -> {
-            if(answerThree.getText().equals(model.getEquation().getImageValue()))
-            {
-                model.addScore();
-            }else{
-                    this.timerLength = this.timerLength - 5;
-            }
-        });
         retryButton.setVisible(false);
         gameOverScoreField.setVisible(false);
         root.getChildren().addAll(gameOverScoreField, retryButton);
@@ -139,7 +117,6 @@ public class View {
         AudioHandler.getInstance().play();
         animationTimer.start();
     }
-
 
     public Button getAnswerOne() {
         return answerOne;
@@ -169,4 +146,15 @@ public class View {
         return gc;
     }
 
+    public Text getGameOverScoreField() {
+        return gameOverScoreField;
+    }
+
+    public Pane getRoot() {
+        return root;
+    }
+
+    public void setTimerLength(int timerLength) {
+        this.timerLength = timerLength;
+    }
 }

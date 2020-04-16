@@ -12,17 +12,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-
-
 public class Main extends Application {
-
     View view;
     Model model;
     Controller controller;
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("MVC App");
@@ -30,10 +26,12 @@ public class Main extends Application {
         stage.setAlwaysOnTop(true);
         Button startButton = new Button("Start");
         Text gameDescription = new Text("See how many points you can get before the timer runs out.");
+//        Start Button
         startButton.setLayoutX(600);
         startButton.setLayoutY(400);
         startButton.setScaleX(4.5);
         startButton.setScaleY(3);
+//        Game Description
         gameDescription.setLayoutX(375);
         gameDescription.setLayoutY(300);
         gameDescription.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
