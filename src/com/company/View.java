@@ -54,10 +54,12 @@ public class View {
         answerThree.setStyle("-fx-background-color: green; -fx-text-fill: white");
         answerThree.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
 //        Retry Button
-        retryButton.setLayoutX(600);
-        retryButton.setLayoutY(470);
+        retryButton.setLayoutX(590);
+        retryButton.setLayoutY(560);
         retryButton.setScaleX(3);
         retryButton.setScaleY(2.4);
+        retryButton.setStyle("-fx-background-color: green; -fx-text-fill: white");
+        retryButton.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
 //         Timer field
         timerField = new Text();
         timerField.setLayoutX(1210);
@@ -71,8 +73,9 @@ public class View {
 //        Game over score
         gameOverScoreField = new Text();
         gameOverScoreField.setLayoutX(270);
-        gameOverScoreField.setLayoutY(420);
+        gameOverScoreField.setLayoutY(400);
         gameOverScoreField.setFont(Font.font("Verdana", FontWeight.BOLD, 65));
+        gameOverScoreField.setStyle("-fx-text-fill: white");
 //          Graphics content
         canvas = new Canvas(1200,350);
         gc = canvas.getGraphicsContext2D();
@@ -88,6 +91,7 @@ public class View {
                 if(timerLength >= 10){
                     timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
                 }else if(timerLength <= 1){
+                    root.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-image: url(/images/backgroundRetry.png); -fx-background-repeat: none");
                     retryButton.setVisible(true);
                     gameOverScoreField.setVisible(true);
                     setMainGameElementsToNotVisible();
@@ -114,7 +118,7 @@ public class View {
         root.getChildren().addAll(gameOverScoreField, retryButton);
         retryButton.setText("RETRY");
         root.getChildren().addAll(answerOne, answerTwo, answerThree, canvas, timerField, scoreField);
-        AudioHandler.getInstance().play();
+        AudioHandler.getInstance().playBackground();
         animationTimer.start();
     }
 

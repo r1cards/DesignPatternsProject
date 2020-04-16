@@ -25,24 +25,30 @@ public class Controller implements EventHandler<Event> {
         if(event.getSource() == view.getAnswerOne()){
             if(view.getAnswerOne().getText().equals(model.getEquation().getImageValue()))
             {
+                AudioHandler.getInstance().playCorrectSound();
                 model.addScore();
             }else{
+                AudioHandler.getInstance().playIncorrectSound();
                 model.setTimerLength(model.getTimerLength() - 5);
             }
         }
         if(event.getSource() == view.getAnswerTwo()){
             if(view.getAnswerTwo().getText().equals(model.getEquation().getImageValue()))
             {
+                AudioHandler.getInstance().playCorrectSound();
                 model.addScore();
             }else{
+                AudioHandler.getInstance().playIncorrectSound();
                 model.setTimerLength(model.getTimerLength() - 5);
             }
         }
         if(event.getSource() == view.getAnswerThree()){
             if(view.getAnswerThree().getText().equals(model.getEquation().getImageValue()))
             {
+                AudioHandler.getInstance().playCorrectSound();
                 model.addScore();
             }else{
+                AudioHandler.getInstance().playIncorrectSound();
                 model.setTimerLength(model.getTimerLength() - 5);
             }
         }
