@@ -4,7 +4,7 @@ public class Model {
 //  Here we set up the fields
     private ScreenObject equation;
     private int finalScore = 0;
-    private int timerLength;
+    private int timerLength = 60;
 //  This method returns the time
     public int getTimerLength() {
         return timerLength;
