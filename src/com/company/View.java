@@ -93,8 +93,9 @@ public class View {
                 gameOverScoreField.setText("               "+model.getTopScore());
                 if(timerLength >= 10){
                     timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
-                }else if(timerLength <= 1){
+                }else if(timerLength <= 0){
                     root.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-image: url(/images/backgroundRetry.png); -fx-background-repeat: none");
+                    AudioHandler.getInstance().playRetryScreenSound();
                     retryButton.setVisible(true);
                     gameOverScoreField.setVisible(true);
                     setMainGameElementsToNotVisible();
