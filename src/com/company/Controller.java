@@ -73,7 +73,7 @@ public class Controller implements EventHandler<Event> {
             new View(view.getRoot(), model);
             model.getEquation().generateImagePath();
             model.setTimerLength(60);
-            model.setTopScore(0);
+            model.setFinalScore(0);
         }
     }
 }

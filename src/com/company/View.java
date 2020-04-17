@@ -90,7 +90,7 @@ public class View {
                 timerField.setStrokeWidth(2);
                 timerField.setStroke(Color.BLACK);
                 timerField.setFill(Color.WHITE);
-                gameOverScoreField.setText("               "+model.getTopScore());
+                gameOverScoreField.setText("               "+model.getFinalScore());
                 if(timerLength >= 10){
                     timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
                 }else if(timerLength <= 0){
@@ -116,7 +116,7 @@ public class View {
             @Override
             public void handle(long now) {
                 model.getEquation().update();
-                scoreField.setText(Integer.toString(model.getTopScore()));
+                scoreField.setText(Integer.toString(model.getFinalScore()));
             }
         };
         retryButton.setVisible(false);
