@@ -6,8 +6,8 @@ import java.util.Random;
 // This class is used to pick a random equation, it also extends the Game Object class which will draw it on the screen
 public class ScreenObject extends GameObject {
 //  Here we set the fields
-    String imageValue;
-    Random random;
+    private String imageValue;
+    private Random random;
 //  This is the constructor for the ScreenObject class
     public ScreenObject(GraphicsContext gc, double x, double y) {
         super(gc, x, y);

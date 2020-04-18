@@ -20,9 +20,8 @@ public class View {
     private Text timerField, scoreField, gameOverScoreField;
     private GraphicsContext gc;
     private AnimationTimer animationTimer;
-//    private int timerLength = 60;
 //  This is the constructor for the View class
-    View(Pane root, Model model) {
+    public View(Pane root, Model model) {
         this.root = root;
         this.model = model;
 //      Here we set the background for the main screen
@@ -182,8 +181,4 @@ public class View {
     public Pane getRoot() {
         return root;
     }
-////  This method returns the timer length
-//public void setTimerLength(int timerLength) {
-//        this.timerLength = timerLength;
-//    }
 }

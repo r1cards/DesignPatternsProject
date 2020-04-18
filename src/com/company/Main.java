@@ -18,7 +18,7 @@ public class Main extends Application {
     }
 //  Tis method starts the start stage of the game which then if followed by the main stage
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 //      Here we set the name of the stage and its properties
         stage.setTitle("Counting game");
         stage.setResizable(false);
