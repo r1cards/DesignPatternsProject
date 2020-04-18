@@ -20,7 +20,7 @@ public class View {
     private Text timerField, scoreField, gameOverScoreField;
     private GraphicsContext gc;
     private AnimationTimer animationTimer;
-    private int timerLength = 60;
+//    private int timerLength = 60;
 //  This is the constructor for the View class
     View(Pane root, Model model) {
         this.root = root;
@@ -87,16 +87,16 @@ public class View {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                timerField.setText(timerLength+"");
+                timerField.setText(model.getTimerLength()+"");
                 timerField.setStrokeWidth(2);
                 timerField.setStroke(Color.BLACK);
                 timerField.setFill(Color.WHITE);
                 gameOverScoreField.setText("               "+model.getFinalScore());
 //              If the timer has more than 10 seconds left
-                if(timerLength >= 10){
+                if(model.getTimerLength() >= 10){
                     timerField.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
 //              Here we check if the time is at 0 or less
-                }else if(timerLength <= 0){
+                }else if(model.getTimerLength() <= 0){
 //                  Here we set the background for the the final screen
                     root.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-image: url(/images/backgroundRetry.png); -fx-background-repeat: none");
 //                  Here we play the final screen sound
@@ -119,7 +119,7 @@ public class View {
                     timerField.setStroke(Color.BLACK);
                     timerField.setFill(Color.RED);
                 }
-                timerLength--;
+                model.setTimerLength(model.getTimerLength()-1);
             }
         };
 //      Here we set the timer speed
@@ -182,8 +182,8 @@ public class View {
     public Pane getRoot() {
         return root;
     }
-//  This method returns the timer length
-public void setTimerLength(int timerLength) {
-        this.timerLength = timerLength;
-    }
+////  This method returns the timer length
+//public void setTimerLength(int timerLength) {
+//        this.timerLength = timerLength;
+//    }
 }

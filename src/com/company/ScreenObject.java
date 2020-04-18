@@ -17,7 +17,6 @@ public class ScreenObject extends GameObject {
     public String getImageValue(){
         return imageValue;
     }
-
 //  Generates and returns the first part of the image path
     public String setNewImage(){
         random = new Random();
@@ -33,7 +32,6 @@ public class ScreenObject extends GameObject {
             return "23";
         }
     }
-
 // Generates and returns the second part of the image path
     public String setImageSelector(){
         random = new Random();

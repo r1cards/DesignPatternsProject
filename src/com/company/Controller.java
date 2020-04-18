@@ -34,7 +34,8 @@ public class Controller implements EventHandler<Event> {
             }else{
 //              Play incorrect sound and lose 5 seconds from the timer
                 AudioHandler.getInstance().playIncorrectSound();
-                model.setTimerLength(model.getTimerLength() - 5);
+                model.loseTime();
+//                model.setTimerLength(model.getTimerLength() - 5);
             }
         }
 //      If the second answer is pressed
@@ -48,7 +49,8 @@ public class Controller implements EventHandler<Event> {
             }else{
 //              Play incorrect sound and lose 5 seconds from the timer
                 AudioHandler.getInstance().playIncorrectSound();
-                model.setTimerLength(model.getTimerLength() - 5);
+                model.loseTime();
+//                model.setTimerLength(model.getTimerLength() - 5);
             }
         }
 //      If the third answer is pressed
@@ -62,18 +64,20 @@ public class Controller implements EventHandler<Event> {
             }else{
 //              Play incorrect sound and lose 5 seconds from the timer
                 AudioHandler.getInstance().playIncorrectSound();
-                model.setTimerLength(model.getTimerLength() - 5);
+                model.loseTime();
+//                model.setTimerLength(model.getTimerLength() - 5);
             }
         }
-//      If the retry button has bee pressed
+//      If the retry button has been pressed
         if(event.getSource() == view.getRetryButton()){
 //          Here we reset the game
-            view.getRetryButton().setVisible(false);
-            view.getGameOverScoreField().setVisible(false);
-            new View(view.getRoot(), model);
-            model.getEquation().generateImagePath();
             model.setTimerLength(60);
             model.setFinalScore(0);
+            view.getRetryButton().setVisible(false);
+            view.getGameOverScoreField().setVisible(false);
+            View newGameView = new View(view.getRoot(), this.model);
+            new Controller(this.model, newGameView);
+            model.getEquation().generateImagePath();
         }
     }
 }
