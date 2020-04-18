@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 // This is the Main class of the game
 public class Main extends Application {
-    View view;
-    Model model;
-    Controller controller;
+    private View view;
+    private Model model;
+    private Controller controller;
 //  This is the constructor for the Main Class
     public static void main(String[] args) {
         launch(args);
@@ -55,12 +55,9 @@ public class Main extends Application {
         stage.setScene(new Scene(start, 1280, 720));
         stage.show();
 //      Here we make sure the game is turned off when the window is closed
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                Platform.exit();
-                System.exit(0);
-            }
+        stage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
         });
     }
 }
