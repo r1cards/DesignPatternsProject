@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private View view;
     private Model model;
-    private Controller controller;
 //  This is the constructor for the Main Class
     public static void main(String[] args) {
         launch(args);
@@ -47,7 +46,7 @@ public class Main extends Application {
             view = new View(root, model);
             ScreenObject screenObject = new ScreenObject(view.getGc(), 275,140);
             model.setEquation(screenObject);
-            controller = new Controller(model, view);
+            new Controller(model, view);
         });
 //      Here we set the stage for the start screen
         stage.setScene(new Scene(start, 1280, 720));
