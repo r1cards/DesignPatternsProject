@@ -35,7 +35,6 @@ public class Controller implements EventHandler<Event> {
 //              Play incorrect sound and lose 5 seconds from the timer
                 AudioHandler.getInstance().playIncorrectSound();
                 model.loseTime();
-//                model.setTimerLength(model.getTimerLength() - 5);
             }
         }
 //      If the second answer is pressed
@@ -50,7 +49,6 @@ public class Controller implements EventHandler<Event> {
 //              Play incorrect sound and lose 5 seconds from the timer
                 AudioHandler.getInstance().playIncorrectSound();
                 model.loseTime();
-//                model.setTimerLength(model.getTimerLength() - 5);
             }
         }
 //      If the third answer is pressed
@@ -65,7 +63,6 @@ public class Controller implements EventHandler<Event> {
 //              Play incorrect sound and lose 5 seconds from the timer
                 AudioHandler.getInstance().playIncorrectSound();
                 model.loseTime();
-//                model.setTimerLength(model.getTimerLength() - 5);
             }
         }
 //      If the retry button has been pressed
